@@ -381,7 +381,7 @@ public class StringsTest {
     }
 
     @Test
-    public void GetDescriptiveTimeString_9000Seconds_ReturnsCorrespondingHours(){
+    public void GetDescriptiveTimeString_9001Seconds_ReturnsCorrespondingHours(){
         String actual = Strings.getDescriptiveDurationString(9001, GetDescriptiveTimeString_Context());
         String expected = "2h 30m 1s";
         assertThat("9001 seconds returns correspnding time", actual, is(expected));
