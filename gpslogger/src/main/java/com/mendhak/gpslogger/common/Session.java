@@ -33,7 +33,7 @@ public class Session {
     private Location previousLocationInfo;
     private Location currentLocationInfo;
 
-    private Session() {
+    Session() {
 
     }
 
