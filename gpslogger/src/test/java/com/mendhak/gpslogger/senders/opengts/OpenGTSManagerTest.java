@@ -5,10 +5,13 @@ import android.test.suitebuilder.annotation.SmallTest;
 import com.mendhak.gpslogger.common.PreferenceHelper;
 import com.mendhak.gpslogger.common.SerializableLocation;
 import com.mendhak.gpslogger.loggers.MockLocations;
+import com.mendhak.gpslogger.loggers.opengts.OpenGTSLogger;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.io.File;
 import java.net.URL;
 
 import static org.hamcrest.CoreMatchers.containsString;
@@ -174,4 +177,12 @@ public class OpenGTSManagerTest {
         assertThat("Uses id if account name is missing",  OpenGTSManager.getUrl("99",null,sloc, "HTTPS", "","example.com",9001).toString() , is(url.toString()));
     }
 
+    @Test
+    public void accept_OnlyGpxAllowed() {
+        PreferenceHelper pm = mock(PreferenceHelper.class);
+        OpenGTSManager opengts = new OpenGTSManager(pm);
+
+        assertThat("Only GPX files allowed", opengts.accept(new File("/"), "abc.def"), is(false));
+        assertThat("Only GPX files allowed", opengts.accept(new File("/"), "abc.gpx"), is(true));
+    }
 }

@@ -9,7 +9,10 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.File;
 
+import se.akerfeldt.okhttp.signpost.OkHttpOAuthProvider;
+
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -55,4 +58,13 @@ public class OpenStreetMapManagerTest {
 
     }
 
+    @Test
+    public void getOSMAuthProvider_Test(){
+        PreferenceHelper pm = mock(PreferenceHelper.class);
+        OpenStreetMapManager osm = new OpenStreetMapManager(pm);
+
+        assertThat(osm.getOSMAuthProvider().getRequestTokenEndpointUrl(), is("http://www.openstreetmap.org/oauth/request_token"));
+        assertThat(osm.getOSMAuthProvider().getAccessTokenEndpointUrl(), is("http://www.openstreetmap.org/oauth/access_token"));
+        assertThat(osm.getOSMAuthProvider().getAuthorizationWebsiteUrl(), is("http://www.openstreetmap.org/oauth/authorize"));
+    }
 }
