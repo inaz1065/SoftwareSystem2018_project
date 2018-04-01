@@ -34,7 +34,7 @@ public class SystemsTest {
 
         when(context.registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED)))
         .thenReturn(new Intent(context, GpsMainActivity.class));
-        assertThat("getBatteryLevel Test",Systems.getBatteryLevel(context),is(100));
+        assertThat("getBatteryLevel Test",Systems.getBatteryLevel(context),is(0));
     }
 
     @Test

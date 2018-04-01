@@ -27,13 +27,13 @@ public class MathsTest {
     @Test
     public void testCalculateDistance() {
         double result = Maths.calculateDistance(4,5,6,7);
-        assertThat("test",result, is(313900.7392720313));
+        assertThat("calculate distance test",result, is(313900.7392720313));
     }
 
     @Test
     public void testMpsToknots() {
         double result = Maths.mpsToKnots(2.5);
-        assertThat("test",result,is(2.5*1.94384449));
+        assertThat("testMpsToknots test",result,is(2.5*1.94384449));
     }
 
     @Test
@@ -51,7 +51,7 @@ public class MathsTest {
         when(loc.getExtras()).thenReturn(b);
 
         int result = Maths.getBundledSatelliteCount(loc);
-        assertThat("test",result,is(0));
+        assertThat("getBundledSatelliteCount test",result,is(0));
 
     }
 }
