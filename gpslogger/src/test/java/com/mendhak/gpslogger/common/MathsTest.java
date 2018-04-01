@@ -27,7 +27,7 @@ public class MathsTest {
     @Test
     public void testCalculateDistance() {
         double result = Maths.calculateDistance(4,5,6,7);
-        assertThat("test",result, is(1.0));
+        assertThat("test",result, is(313900.7392720313));
     }
 
     @Test

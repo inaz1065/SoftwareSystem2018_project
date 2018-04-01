@@ -3,6 +3,7 @@ package com.mendhak.gpslogger.common;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.BatteryManager;
 import android.provider.Settings;
 import android.test.suitebuilder.annotation.SmallTest;
@@ -43,10 +44,11 @@ public class SystemsTest {
     }
 
     @Test
-    public void testIsPackingInstalled() {
+    public void testIsNetworkAvailable() {
         Context context = mock(Context.class);
-        assertThat("isPackingInstalled Test",
-                Systems.isPackageInstalled("package",context),is(true));
+        assertThat("isNetworkAvailable test",Systems.isNetworkAvailable(context),is(false));
     }
+
+
 
 }
