@@ -1,11 +1,20 @@
 package com.mendhak.gpslogger.senders.googledrive;
 
 
+import android.os.Bundle;
 import android.test.suitebuilder.annotation.SmallTest;
+
+import com.google.android.gms.auth.GoogleAuthException;
+import com.google.android.gms.auth.GoogleAuthUtil;
+import com.mendhak.gpslogger.common.AppSettings;
 import com.mendhak.gpslogger.common.PreferenceHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import java.io.IOException;
+import java.io.File;
+import android.content.Context;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -16,6 +25,22 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class GoogleDriveManagerTest {
 
+    @Test
+    public void getOauth2ScopeTest(){
+        PreferenceHelper pm = mock(PreferenceHelper.class);
+        GoogleDriveManager gdm = new GoogleDriveManager(pm);
+
+        assertThat(gdm.getOauth2Scope(), is("oauth2:https://www.googleapis.com/auth/drive.file"));
+    }
+
+    @Test
+    public void Accept_FileFilter_AcceptsAllFileTypes(){
+        PreferenceHelper pm = mock(PreferenceHelper.class);
+        GoogleDriveManager gdm = new GoogleDriveManager(pm);
+
+        assertThat("Any file type", gdm.accept(null, null), is(true));
+        assertThat("Any file type", gdm.accept(new File("/"), "abc.xyz"), is(true));
+    }
 
     @Test
     public void IsAvailable_AccountAndToken_IsAvailable(){
