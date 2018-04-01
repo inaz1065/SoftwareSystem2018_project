@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.io.File;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
@@ -15,6 +16,18 @@ import static org.mockito.Mockito.when;
 @SmallTest
 @RunWith(MockitoJUnitRunner.class)
 public class FtpManagerTest {
+
+
+    @Test
+    public void Accept_FileFilter_AcceptsAllFileTypes(){
+        PreferenceHelper pm = mock(PreferenceHelper.class);
+        FtpManager aem = new FtpManager(pm);
+
+        assertThat("Any file type", aem.accept(null, null), is(true));
+        assertThat("Any file type", aem.accept(new File("/"), "abc.xyz"), is(true));
+    }
+
+
     @Test
     public void IsAvailable_WhenAllValuesPresent_ReturnsTrue(){
 
